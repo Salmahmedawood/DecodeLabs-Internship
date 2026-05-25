@@ -72,3 +72,8 @@ plt.show()
 # SAVE RESULTS TO EXCEL
 monthly_sales.to_excel("Monthly_Sales.xlsx")
 outliers.to_excel("Outliers.xlsx")
+
+print("Analysis completed and results saved to Excel files.")
+
+
+print("Helloworld")
