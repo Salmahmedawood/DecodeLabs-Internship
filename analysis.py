@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Read dataset
+# Read thedataset
 df= pd.read_excel("Cleaned_Data.xlsx")
 print(df.head())
 
