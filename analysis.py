@@ -17,6 +17,7 @@ for col in columns:
     print("\nColumn:", col)
     print("Mean:", df[col].mean())
     print("Median:", df[col].median())
+    print("Count:", df[col].count())
     print("Minimum:", df[col].min())
     print("Maximum:", df[col].max())
 
@@ -25,27 +26,23 @@ df["Date"] = pd.to_datetime(df["Date"])
 
 # Month extraction
 df["Month"] = df["Date"].dt.month_name()
+df["Month_Number"] = df["Date"].dt.month
+
 
 # Monthly Sales
-monthly_sales = df.groupby("Month")["TotalPrice"].sum()
+monthly_sales = df.groupby("Month")["TotalPrice"].sum().reset_index().sort_values("Month_Number")
 print("\nMonthly Sales:")
 print(monthly_sales)
 
 ## HIGHEST SALES MONTH ##
 print(monthly_sales.sort_values(ascending=False).head(1))  
-## June: 170,616.13 
 
 
 # PRODUCT PERFORMANCE ANALYSIS
 product_sales = df.groupby("Product")["TotalPrice"].sum()
 product_sales = product_sales.sort_values(ascending=False)
 print(product_sales.head(5))
-## Top 5 products by sales ##
-# Chair      195620.11
-# Printer    195,612.61
-# Laptop     192,126.56
-# Tablet     186,568.95
-# Monitor    175,651.41
+
 
 
 
@@ -74,5 +71,4 @@ monthly_sales.to_excel("Monthly_Sales.xlsx")
 outliers.to_excel("Outliers.xlsx")
 
 print("Analysis completed and results saved to Excel files.")
-
 
